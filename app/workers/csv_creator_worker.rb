@@ -50,6 +50,18 @@ class CsvCreatorWorker
     end
   end
 
+  def self.export_csv_files
+    export_path = CSV_PATH.join('export')
+    FileUtils.mkdir_p export_path
+
+    TYPES.each do |type|
+      csv_path = "#{export_path}/#{type}.csv"
+      sql = "COPY #{type} TO ? DELIMITER ',' CSV;"
+      query = ActiveRecord::Base.send(:sanitize_sql_array, [sql, csv_path])
+      ActiveRecord::Base.connection.execute(query)
+    end
+  end
+
   def self.import_csv_files
     TYPES.each do |type|
       csv_path = "#{CSV_PATH}/#{type}.csv"
