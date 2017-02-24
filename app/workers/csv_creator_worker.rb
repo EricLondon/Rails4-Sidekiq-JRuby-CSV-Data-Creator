@@ -20,6 +20,10 @@ class CsvCreatorWorker
     ]
   end
 
+  def people_header_row
+    Person.columns.map { |column| column.name == 'id' ? 'person_id' : column.name }
+  end
+
   def products(id)
     [
       id,
@@ -32,12 +36,24 @@ class CsvCreatorWorker
     ]
   end
 
+  def products_header_row
+    Product.columns.map { |column| column.name == 'id' ? 'product_id' : column.name }
+  end
+
   def orders(id)
     [id, (id/3.to_f).ceil]
   end
 
+  def orders_header_row
+    %w(order_id person_id)
+  end
+
   def orders_products(id)
     [id, (id/3.to_f).ceil, Random.rand(1..10_000)]
+  end
+
+  def orders_products_header_row
+    %w(order_product_id order_id product_id)
   end
 
   def perform(type, ids, padding)
@@ -45,6 +61,9 @@ class CsvCreatorWorker
     file_path = Rails.root.join('tmp', 'csv', file_name)
     CSV.open(file_path, 'wb') do |csv|
       ids.each do |id|
+        if id == 1
+          csv << send("#{type}_header_row")
+        end
         csv << send(type, id)
       end
     end
