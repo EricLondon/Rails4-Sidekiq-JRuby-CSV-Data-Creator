@@ -46,16 +46,19 @@ GEM
     awesome_print (1.7.0)
     builder (3.2.2)
     coderay (1.1.1)
+    concurrent-ruby (1.0.3)
     concurrent-ruby (1.0.3-java)
     connection_pool (2.2.1)
     erubis (2.7.0)
     faker (1.6.6)
       i18n (~> 0.5)
-    ffi (1.9.14-java)
+    ffi (1.13.1)
+    ffi (1.13.1-java)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     i18n (0.7.0)
     jdbc-postgres (9.4.1206)
+    json (1.8.3)
     json (1.8.3-java)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
@@ -65,11 +68,18 @@ GEM
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
+    mini_portile2 (2.1.0)
     minitest (5.10.1)
+    nokogiri (1.6.8.1)
+      mini_portile2 (~> 2.1.0)
     nokogiri (1.6.8.1-java)
     parser (2.3.3.1)
       ast (~> 2.2)
     powerpack (0.1.1)
+    pry (0.10.4)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
     pry (0.10.4-java)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -135,6 +145,7 @@ GEM
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
     thor (0.19.4)
+    thread_safe (0.3.5)
     thread_safe (0.3.5-java)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
@@ -144,6 +155,7 @@ GEM
 
 PLATFORMS
   java
+  ruby
 
 DEPENDENCIES
   activerecord-jdbcpostgresql-adapter
